@@ -27,24 +27,27 @@ const topUp = async (req, res) => {
         if (amount === undefined || isNaN(amount)) {
             return res.status(400).send({
                 status: 400,
-                message: "Parameter amount harus berupa angka",
+                message: "Parameter amount harus berupa angka dan tidak boleh lebih kecil dari 0",
+                data: null
             });
         }
-
+        
         const amountValue = parseFloat(amount);
         if (amountValue <= 0) {
             return res.status(400).send({
                 status: 400,
                 message: "Parameter amount harus lebih besar dari 0",
+                data: null
             })
         }
-
+        
         const user = await db.query("SELECT * FROM users WHERE email = ?", [userEmail]);
-
+        
         if (!user.length) {
             return res.status(404).send({
                 status: 404,
                 message: "User tidak ditemukan",
+                data: null
             });
         }
 

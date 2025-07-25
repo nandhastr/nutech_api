@@ -28,7 +28,8 @@ const transaction = async (req, res) => {
         if (!service_code) {
             return res.status(400).send({
                 status: 400,
-                message: "Parameter service_code harus di isi",
+                message: "Parameter service code harus di isi",
+                data: null,
             });
         }
 
@@ -36,6 +37,7 @@ const transaction = async (req, res) => {
             return res.status(400).send({
                 status: 400,
                 message: "Parameter amount harus di isi",
+                data: null,
             });
         }
 
@@ -43,6 +45,7 @@ const transaction = async (req, res) => {
             return res.status(400).send({
                 status: 400,
                 message: "Parameter amount harus berupa angka",
+                data: null,
             });
         }
         

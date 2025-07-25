@@ -12,12 +12,14 @@ const Login = async (req, res)=>{
             return res.status(400).send({
                 status: 400,
                 message: "parameter password harus di isi",
+                data: null
             });
         }
         if (!email) {
             return res.status(400).send({
                 status: 400,
                 message: "parameter email harus di isi",
+                data: null
             });
         }
         
@@ -26,6 +28,7 @@ const Login = async (req, res)=>{
             return res.status(400).send({
                 status: 400,
                 message: "parameter email tidak valid",
+                data: null
             });
         }
 
@@ -36,6 +39,7 @@ const Login = async (req, res)=>{
             return res.status(400).send({
                 status: 400,
                 message: "Email belum terdaftar",
+                data: null
             });
         }
         
@@ -46,6 +50,7 @@ const Login = async (req, res)=>{
             return res.status(400).send({
                 status: 400,
                 message: "Password salah",
+                data: null
             });
         }
 
@@ -55,7 +60,9 @@ const Login = async (req, res)=>{
         return res.status(200).send({
             email: user.email,
             password: user.password,
-            token: token
+            data: {
+                token:token
+            }
         })
  
     } catch (error) {
