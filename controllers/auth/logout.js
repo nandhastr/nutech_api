@@ -9,6 +9,7 @@ const Logout = async (req, res) => {
             return res.status(401).send({
                 status: 401,
                 message: "Token tidak ditemukan di header Authorization",
+                data: null,
                 error: "Unauthorized",
             });
         }
@@ -19,6 +20,7 @@ const Logout = async (req, res) => {
             return res.status(404).send({
                 status: 404,
                 message: "User tidak ditemukan atau sudah logout",
+                data: null
             });
         }
 
@@ -27,6 +29,7 @@ const Logout = async (req, res) => {
         return res.status(200).send({
             status: 200,
             message: "Berhasil logout",
+            data: null
         });
     } catch (error) {
         return res.status(500).send({

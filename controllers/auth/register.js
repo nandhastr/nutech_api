@@ -36,6 +36,7 @@ const Register = async (req, res) => {
             return res.status(400).send({
                 status: 400,
                 message: "Parameter email tidak sesuai format",
+                data: null,
             });
         }
 
@@ -53,6 +54,7 @@ const Register = async (req, res) => {
             return res.status(400).send({
                 status: 400,
                 message: "Password harus di isi",
+                data: null
             });
         }
 
@@ -60,6 +62,7 @@ const Register = async (req, res) => {
             return res.status(400).send({
                 status: 400,
                 message: "Password minimal 8 karakter",
+                data: null
             });
         }
 
@@ -68,18 +71,11 @@ const Register = async (req, res) => {
 
         const [result] = await db.query("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)", [first_name, last_name, email, hashPassword]);
 
-        const userId = result.id;
-
-        const token = jwt.sign({ id: userId, email: email }, process.env.JWT_SECRET, {
-            expiresIn: "1d",
-        });
 
         return res.status(200).send({
-            email,
-            first_name,
-            last_name,
-            password: hashPassword,
-            token,
+            status:0,
+            message: "Registrasi berhasil silahkan logn",
+            data: null
         });
     } catch (error) {
         return res.status(500).send({
