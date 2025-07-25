@@ -6,7 +6,7 @@ import Logout from "../../controllers/auth/logout.js";
 const router = express.Router();
 
 
-router.post("/register", Register);
+router.post("/registration", Register);
 router.post("/login", Login);
 router.post("/logout", Logout);
 
